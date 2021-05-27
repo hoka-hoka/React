@@ -1,40 +1,56 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import './CheckBox.scss';
 
-export default class CheckBox extends Component {
-  constructor(props) {
-    super(props);
-    const { active } = this.props;
-    this.state = { active: active || false };
-  }
+const CheckBox = ({
+  action,
+  labText,
+  extClass,
+  idFor,
+  bubling,
+  callback = (f) => f,
+}) => {
+  const [active, setActive] = useState(action);
 
-  componentDidUpdate() {
-    const { active } = this.state;
-    const { bubling, callback } = this.props;
+  useEffect(() => {
     if (bubling) {
       callback(active);
     }
-  }
+  }, [bubling]);
 
-  changeActive = () => {
-    this.setState(({ active }) => ({ active: !active }));
+  const changeActive = (event) => {
+    if (event.type === 'keypress' && event.code !== 'Space') {
+      return;
+    }
+    setActive((prevState) => !prevState);
   };
 
-  render() {
-    const { text, extClass, idFor } = this.props;
-    return (
-      <div className="check-box">
-        <input
-          id={idFor}
-          className="check-box__field check-box__field_hiden"
-          type="checkbox"
-          tabIndex="-1"
-          onClick={this.changeActive}
-        />
-        <label className={`check-box__lab${extClass ?? ''}`} htmlFor={idFor}>
-          {text}
-        </label>
-      </div>
-    );
-  }
-}
+  return (
+    <div
+      className="check-box"
+      tabIndex="0"
+      role="checkbox"
+      aria-checked={active}
+      onKeyPress={changeActive}
+    >
+      <input
+        id={idFor}
+        className="check-box__field check-box__field_hiden"
+        onChange={changeActive}
+        type="checkbox"
+        tabIndex="-1"
+        checked={active}
+      />
+      <label className={`check-box__lab${extClass ?? ''}`} htmlFor={idFor}>
+        {labText}
+      </label>
+    </div>
+  );
+};
+
+CheckBox.defaultProps = {
+  action: false,
+  labText: 'label_text',
+  bubling: false,
+};
+
+export default CheckBox;

@@ -19,7 +19,7 @@
   }
 
   .check-box__lab::after {
-    top: 1px;
+    top: 4px;
     left: 7px;
     width: 6px;
     height: 8px;
@@ -37,8 +37,6 @@
         bottom: 2px solid;
         color: $blue;
       }
-      // border-image: linear-gradient(180deg, $dark-25 0%, $purpure-light 100%);
-      // border-image-slice: 1;
     }
 
     &_hiden {

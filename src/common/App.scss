@@ -1,0 +1,13 @@
+.ui {
+  &__check {
+    display: flex;
+  }
+
+  &__check-item {
+    margin-right: 10px;
+
+    &:last-of-type {
+      margin: unset;
+    }
+  }
+}

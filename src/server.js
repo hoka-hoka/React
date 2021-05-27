@@ -14,15 +14,13 @@ export default function makeServer(url) {
     },
 
     routes() {
-      this.get(`/api${url}`, (schema) => {
-        return schema.d.all();
-      });
+      this.get(`/api${url}`, (schema) => schema.d.all());
 
       this.post(`/api${url}`, (schema, request) => {
         const args = JSON.parse(request.sendArguments[0]);
         const token = createToken(args);
 
-        let attrs = JSON.parse(request.requestBody);
+        const attrs = JSON.parse(request.requestBody);
         if (token) {
           attrs.token = token;
         }
