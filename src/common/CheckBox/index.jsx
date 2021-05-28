@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './CheckBox.scss';
 
-const CheckBox = ({
-  action,
-  labText,
-  extClass,
-  idFor,
-  bubling,
-  callback = (f) => f,
-}) => {
+const CheckBox = ({ action, labText, extClass, idFor, bubling, callback }) => {
   const [active, setActive] = useState(action);
 
   useEffect(() => {
@@ -39,8 +32,9 @@ const CheckBox = ({
         type="checkbox"
         tabIndex="-1"
         checked={active}
+        aria-hidden
       />
-      <label className={`check-box__lab${extClass ?? ''}`} htmlFor={idFor}>
+      <label className={`check-box__lab${extClass || ''}`} htmlFor={idFor}>
         {labText}
       </label>
     </div>
@@ -51,6 +45,7 @@ CheckBox.defaultProps = {
   action: false,
   labText: 'label_text',
   bubling: false,
+  callback: (f) => f,
 };
 
 export default CheckBox;

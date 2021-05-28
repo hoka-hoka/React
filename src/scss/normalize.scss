@@ -37,6 +37,7 @@ a {
 }
 
 input[type='text'] {
+  font-size: $mainFontSize;
   border-width: 0;
   outline: none;
 }

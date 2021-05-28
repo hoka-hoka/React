@@ -2,17 +2,18 @@
   font-weight: normal;
   font-family: 'Fontello';
   font-style: normal;
-  src: url('../../assets/fonts/fontello-icons/fontello.woff2') format('woff2'),
-    url('../../assets/fonts/fontello-icons/fontello.woff') format('woff');
+  src: url('../assets/fonts/fontello-icons/fontello-icons.woff2')
+      format('woff2'),
+    url('../assets/fonts/fontello-icons/fontello-icons.woff') format('woff');
 }
 
 @font-face {
   font-weight: normal;
   font-family: 'Montserrat';
   font-style: normal;
-  src: url('../../assets/fonts/montserrat-regular/montserrat-regular.woff2')
+  src: url('../assets/fonts/montserrat-regular/montserrat-regular.woff2')
       format('woff2'),
-    url('../../assets/fonts/montserrat-regular/montserrat-regular.woff')
+    url('../assets/fonts/montserrat-regular/montserrat-regular.woff')
       format('woff');
 }
 
@@ -20,8 +21,7 @@
   font-weight: bold;
   font-family: 'Montserrat';
   font-style: normal;
-  src: url('../../assets/fonts/montserrat-bold/montserrat-bold.woff2')
+  src: url('../assets/fonts/montserrat-bold/montserrat-bold.woff2')
       format('woff2'),
-    url('../../assets/fonts/montserrat-bold/montserrat-bold.woff')
-      format('woff');
+    url('../assets/fonts/montserrat-bold/montserrat-bold.woff') format('woff');
 }

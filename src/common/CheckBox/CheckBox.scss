@@ -1,3 +1,8 @@
+:root {
+  --w: 20px;
+  --h: 20px;
+}
+
 .check-box {
   @each $name in (after, before) {
     .check-box__lab::#{$name} {
@@ -7,11 +12,21 @@
     }
   }
 
+  &__lab {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: var(--h);
+    padding-left: 30px;
+    cursor: pointer;
+    user-select: none;
+  }
+
   .check-box__lab::before {
     top: 50%;
     left: 0;
-    width: 20px;
-    height: 20px;
+    width: var(--w);
+    height: 100%;
     border: 1px solid rgba(31, 32, 65, 0.25);
     border-radius: 4px;
     transform: translate(0, -50%);
@@ -50,12 +65,5 @@
       clip: rect(0 0 0 0);
       clip-path: inset(50%);
     }
-  }
-
-  &__lab {
-    position: relative;
-    padding-left: 30px;
-    cursor: pointer;
-    user-select: none;
   }
 }

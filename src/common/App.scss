@@ -1,9 +1,14 @@
 .ui {
-  &__check {
+  padding: 10px;
+
+  &__check,
+  &__drop {
     display: flex;
+    margin-bottom: 10px;
   }
 
-  &__check-item {
+  &__check-item,
+  &__drop-item {
     margin-right: 10px;
 
     &:last-of-type {
