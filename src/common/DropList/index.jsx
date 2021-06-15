@@ -17,8 +17,9 @@ const DropList = ({
 
   useEffect(() => {
     if (!active) {
-      callback();
+      par.current.focus();
     }
+    callback(active);
   }, [active]);
 
   const handlerBlur = () => {
@@ -73,9 +74,9 @@ const DropList = ({
     if (!el || curOption.index != i) {
       return;
     }
-    // console.log(document.activeElement);
-
-    // el.focus();
+    setTimeout(() => {
+      el.focus();
+    });
   };
 
   return (
@@ -120,7 +121,7 @@ const DropList = ({
               onKeyPress={(event) => selectOption(event, i)}
               onFocus={(event) => changeActiveOption(event, i)}
               key={i}
-              tabIndex={-1}
+              tabIndex="0"
               role="button"
             >
               {item}
