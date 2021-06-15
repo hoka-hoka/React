@@ -1,5 +1,5 @@
 # Translation of a sentence  
-[Демо](https://hoka-hoka.github.io/ILink.template-view/ 'Необязательная подсказка')
+[Демо](https://hoka-hoka.github.io/React/ 'Необязательная подсказка')
 
 ### Развёртывание
 
