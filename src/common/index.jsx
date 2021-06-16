@@ -32,6 +32,16 @@ export default class App extends Component {
             />
           </div>
           <div className="ui__drop-item">
+            <label className="ui__drop-label" htmlFor="drop">
+              label text
+            </label>
+            <DropList
+              labFor="drop"
+              optNames={dropList.opts.map((item) => item.name)}
+              placeHolder="select"
+            />
+          </div>
+          <div className="ui__drop-item">
             <DropList
               optNames={dropList.opts.map((item) => item.name)}
               placeHolder="select"

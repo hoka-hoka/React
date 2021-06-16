@@ -4,6 +4,7 @@ import './DropList.scss';
 const DropList = ({
   optNames,
   extClass,
+  labFor,
   placeHolder,
   listActive,
   callback,
@@ -93,6 +94,7 @@ const DropList = ({
       aria-haspopup="true"
     >
       <input
+        id={labFor}
         className="drop-list__field"
         type="text"
         onClick={handlerClick}
@@ -135,6 +137,7 @@ const DropList = ({
 
 DropList.defaultProps = {
   callback: (f) => f,
+  labFor: '',
   optNames: [],
   placeHolder: '',
   listActive: false,
