@@ -1,0 +1,41 @@
+.button {
+  position: relative;
+  display: inline-block;
+  min-height: 32px;
+  color: $black-50;
+  font-size: inherit;
+  font-family: inherit;
+  background-color: transparent;
+  border: 1px solid $black-50;
+  border-radius: 4px;
+  cursor: pointer;
+
+  @each $name in ('after', 'before') {
+    &:#{$name} {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      content: '';
+    }
+  }
+
+  &:focus,
+  &:hover {
+    color: $black;
+    border: 1px solid $blue;
+    outline: none;
+  }
+
+  &:before {
+    // background: linear-gradient(90deg, $blue, $blue-alpha);
+  }
+
+  &:after {
+    margin: 1px;
+    background-color: #fff;
+    border-radius: 3px;
+  }
+}

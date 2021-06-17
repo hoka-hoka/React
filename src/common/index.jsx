@@ -1,19 +1,35 @@
-import '../scss/normalize.scss';
-import './App.scss';
-
 import React, { Component } from 'react';
+import { dropList, viewMode } from '../constants';
 import CheckBox from './CheckBox';
 import DropList from './DropList';
+import Buttons from './Buttons';
+import ModalWindow from './ModalWindow';
 
-import { dropList } from '../constants';
+import '../scss/normalize.scss';
+import './App.scss';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { view: viewMode.main };
   }
 
+  updateState = ({ update } = {}) => {
+    if (!update) {
+      return this.state;
+    }
+    return (params) => this.setState(params);
+  };
+
+  changeView = () => {
+    this.setState({ view: viewMode.modal });
+  };
+
   render() {
+    const { view } = this.state;
+    if (view === viewMode.error) {
+      return false;
+    }
     return (
       <div className="ui">
         <div className="ui__check">
@@ -48,6 +64,16 @@ export default class App extends Component {
               listActive
             />
           </div>
+        </div>
+        <div className="ui__modal">
+          <Buttons
+            btnType="border"
+            btnText="open modal"
+            callback={this.changeView}
+          />
+          {view === viewMode.modal && (
+            <ModalWindow updateState={this.updateState} />
+          )}
         </div>
       </div>
     );

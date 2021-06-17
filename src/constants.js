@@ -1,3 +1,10 @@
+const viewMode = {
+  error: 'error',
+  load: 'loading',
+  main: 'main',
+  modal: 'modal',
+};
+
 const dropList = {
   opts: [
     {
@@ -23,4 +30,4 @@ const dropList = {
   ],
 };
 
-export { dropList };
+export { viewMode, dropList };

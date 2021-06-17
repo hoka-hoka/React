@@ -7,7 +7,6 @@
   @each $name in (after, before) {
     .check-box__lab::#{$name} {
       position: absolute;
-      box-sizing: border-box;
       content: '';
     }
   }
