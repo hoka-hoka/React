@@ -11,14 +11,24 @@
     }
   }
 
+  &:focus {
+    outline: 1px solid $blue;
+  }
+
   &__lab {
     position: relative;
     display: flex;
     align-items: center;
     height: var(--h);
     padding-left: 30px;
+    color: $black-50;
     cursor: pointer;
     user-select: none;
+
+    &:hover,
+    &:focus {
+      color: $black;
+    }
   }
 
   .check-box__lab::before {
@@ -41,6 +51,10 @@
   }
 
   &__field {
+    &:checked ~ .check-box__lab {
+      color: $black;
+    }
+
     &:checked ~ .check-box__lab::before {
       border-color: $blue;
     }
