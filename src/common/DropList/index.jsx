@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import dropList from './constants';
 import './DropList.scss';
 
 const DropList = ({
@@ -138,7 +139,7 @@ const DropList = ({
 DropList.defaultProps = {
   callback: (f) => f,
   labFor: '',
-  optNames: [],
+  optNames: dropList.opts.map((item) => item.name),
   placeHolder: '',
   listActive: false,
 };

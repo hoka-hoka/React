@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { dropList, viewMode } from '../constants';
+import { viewMode } from '../constants';
 import CheckBox from './CheckBox';
 import DropList from './DropList';
 import Buttons from './Buttons';
@@ -42,27 +42,16 @@ export default class App extends Component {
         </div>
         <div className="ui__drop">
           <div className="ui__drop-item">
-            <DropList
-              optNames={dropList.opts.map((item) => item.name)}
-              placeHolder="select"
-            />
+            <DropList placeHolder="select" />
           </div>
           <div className="ui__drop-item">
             <label className="ui__drop-label" htmlFor="drop">
               label text
             </label>
-            <DropList
-              labFor="drop"
-              optNames={dropList.opts.map((item) => item.name)}
-              placeHolder="select"
-            />
+            <DropList labFor="drop" placeHolder="select" />
           </div>
           <div className="ui__drop-item">
-            <DropList
-              optNames={dropList.opts.map((item) => item.name)}
-              placeHolder="select"
-              listActive
-            />
+            <DropList placeHolder="select" listActive />
           </div>
         </div>
         <div className="ui__modal">
