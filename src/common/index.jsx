@@ -4,6 +4,7 @@ import CheckBox from './CheckBox';
 import DropList from './DropList';
 import Buttons from './Buttons';
 import ModalWindow from './ModalWindow';
+import TestComponent from './TestComponent.tsx';
 
 import '../scss/normalize.scss';
 import './App.scss';
@@ -33,6 +34,7 @@ export default class App extends Component {
     return (
       <div className="ui">
         <div className="ui__check">
+          <TestComponent text="hello" />
           <div className="ui__check-item">
             <CheckBox idFor="check_1" />
           </div>

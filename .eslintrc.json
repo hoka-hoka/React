@@ -6,6 +6,28 @@
     "jasmine": true,
     "jquery": true
   },
+
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["@typescript-eslint", "react-hooks"],
+      "extends": ["airbnb", "airbnb-typescript"],
+      "parserOptions": {
+        "ecmaFeatures": { "jsx": true },
+        "ecmaVersion": 2018,
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+      },
+      "rules": {
+        "react/jsx-one-expression-per-line": "off",
+        "linebreak-style": ["error", "windows"], // CRLF - windows and LF - unix
+        "react-hooks/rules-of-hooks": "error", // Проверяем правила хуков
+        "react-hooks/exhaustive-deps": "warn" // Проверяем зависимости эффекта
+      }
+    }
+  ],
+
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {
