@@ -7,6 +7,7 @@ import { viewMode } from '../constants';
 // import TestComponent from './TestComponent.tsx';
 
 import UICheckBox from './UICheckBox/UICheckBox';
+import UIDropList from './UIDropList/UIDropList';
 
 import '../scss/normalize.scss';
 import './App.scss';
@@ -38,20 +39,7 @@ export default class App extends Component {
         {/* <TestComponent text="hello" /> */}
 
         <UICheckBox />
-        {/* <div className="ui__drop">
-          <div className="ui__drop-item">
-            <DropList placeHolder="select" />
-          </div>
-          <div className="ui__drop-item">
-            <label className="ui__drop-label" htmlFor="drop">
-              label text
-            </label>
-            <DropList labFor="drop" placeHolder="select" />
-          </div>
-          <div className="ui__drop-item">
-            <DropList placeHolder="select" listActive />
-          </div>
-        </div> */}
+        <UIDropList />
 
         {/* <div className="ui__modal">
           <Buttons

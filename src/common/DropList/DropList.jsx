@@ -1,16 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import dropList from './constants';
+
 import './DropList.scss';
 
-const DropList = ({
-  optNames,
-  extClass,
-  labFor,
-  placeHolder,
-  listActive,
-  callback,
-}) => {
-  const [active, setActive] = useState(listActive);
+const DropList = ({ idFor, optionNames, placeHolder, action, callback }) => {
+  const [active, setActive] = useState(action);
   const [curOption, setCurOption] = useState({
     val: '',
     index: null,
@@ -51,7 +44,7 @@ const DropList = ({
   };
 
   const handlerClick = ({ target }) => {
-    if (!optNames.length) {
+    if (!optionNames.length) {
       return;
     }
     setActive((prevState) => !prevState);
@@ -84,9 +77,7 @@ const DropList = ({
   return (
     <div
       ref={par}
-      className={`drop-list${extClass ?? ''}${
-        active ? ' drop-list_active' : ''
-      }`}
+      className={`drop-list${active ? ' drop-list_active' : ''}`}
       tabIndex="0"
       onBlur={handlerBlur}
       onKeyPress={handlerKeyPress}
@@ -95,7 +86,7 @@ const DropList = ({
       aria-haspopup="true"
     >
       <input
-        id={labFor}
+        id={idFor}
         className="drop-list__field"
         type="text"
         onClick={handlerClick}
@@ -114,7 +105,7 @@ const DropList = ({
       />
       {active && (
         <div className="drop-list__panel">
-          {optNames.map((item, i) => (
+          {optionNames.map((item, i) => (
             <div
               ref={(el) => defaultFocusOption(el, i)}
               className={`drop-list__item${
@@ -138,10 +129,10 @@ const DropList = ({
 
 DropList.defaultProps = {
   callback: (f) => f,
-  labFor: '',
-  optNames: dropList.opts.map((item) => item.name),
+  idFor: '',
+  optionNames: [],
   placeHolder: '',
-  listActive: false,
+  action: false,
 };
 
 export default DropList;
