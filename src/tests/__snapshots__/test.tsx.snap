@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link 1`] = `
+Object {
+  "createAt": 2021-06-19T09:46:01.014Z,
+  "id": 0.06317999107421457,
+}
+`;

@@ -4,6 +4,9 @@
 }
 
 .check-box {
+  width: max-content;
+  min-width: 20px;
+
   @each $name in (after, before) {
     .check-box__lab::#{$name} {
       position: absolute;
@@ -20,7 +23,6 @@
     display: flex;
     align-items: center;
     height: var(--h);
-    padding-left: 30px;
     color: $black-50;
     cursor: pointer;
     user-select: none;
@@ -29,25 +31,29 @@
     &:focus {
       color: $black;
     }
-  }
 
-  .check-box__lab::before {
-    top: 50%;
-    left: 0;
-    width: var(--w);
-    height: 100%;
-    border: 1px solid rgba(31, 32, 65, 0.25);
-    border-radius: 4px;
-    transform: translate(0, -50%);
-    transition: all 0.15s;
-  }
+    & > span {
+      padding-left: 30px;
+    }
 
-  .check-box__lab::after {
-    top: 4px;
-    left: 7px;
-    width: 6px;
-    height: 8px;
-    transform: rotate(45deg);
+    &::before {
+      top: 50%;
+      left: 0;
+      width: var(--w);
+      height: 100%;
+      border: 1px solid rgba(31, 32, 65, 0.25);
+      border-radius: 4px;
+      transform: translate(0, -50%);
+      transition: all 0.15s;
+    }
+
+    &::after {
+      top: 4px;
+      left: 7px;
+      width: 6px;
+      height: 8px;
+      transform: rotate(45deg);
+    }
   }
 
   &__field {

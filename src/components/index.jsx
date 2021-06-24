@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { viewMode } from '../constants';
-import CheckBox from './CheckBox';
-import DropList from './DropList';
-import Buttons from './Buttons';
-import ModalWindow from './ModalWindow';
-import TestComponent from './TestComponent.tsx';
+// import DropList from '../common/DropList';
+// import Buttons from '../common/Buttons';
+// import ModalWindow from '../common/ModalWindow';
+// import Pagination from '../common/Pagination';
+// import TestComponent from './TestComponent.tsx';
+
+import UICheckBox from './UICheckBox/UICheckBox';
 
 import '../scss/normalize.scss';
 import './App.scss';
@@ -33,16 +35,10 @@ export default class App extends Component {
     }
     return (
       <div className="ui">
-        <div className="ui__check">
-          <TestComponent text="hello" />
-          <div className="ui__check-item">
-            <CheckBox idFor="check_1" />
-          </div>
-          <div className="ui__check-item">
-            <CheckBox labText="checkbox" idFor="check_2" action />
-          </div>
-        </div>
-        <div className="ui__drop">
+        {/* <TestComponent text="hello" /> */}
+
+        <UICheckBox />
+        {/* <div className="ui__drop">
           <div className="ui__drop-item">
             <DropList placeHolder="select" />
           </div>
@@ -55,8 +51,9 @@ export default class App extends Component {
           <div className="ui__drop-item">
             <DropList placeHolder="select" listActive />
           </div>
-        </div>
-        <div className="ui__modal">
+        </div> */}
+
+        {/* <div className="ui__modal">
           <Buttons
             btnType="border"
             btnText="open modal"
@@ -65,7 +62,11 @@ export default class App extends Component {
           {view === viewMode.modal && (
             <ModalWindow updateState={this.updateState} />
           )}
-        </div>
+        </div> */}
+
+        {/* <div className="ui__pagination">
+          <Pagination totalRecords="50" pageLimit="10" pageNeighbours="1" />
+        </div> */}
       </div>
     );
   }

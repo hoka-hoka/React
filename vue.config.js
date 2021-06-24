@@ -120,6 +120,13 @@ module.exports = {
     config.module.rules.delete('stylus');
     config.module.rules.delete('scss');
 
+    config.module
+      .rule('tsx')
+      .test(/\.tsx?$/)
+      .use('ts-loader')
+      .loader('ts-loader')
+      .end();
+
     const svgRule = config.module.rule('svg');
     svgRule.uses.clear();
     /* add config.module.rule('svg') */

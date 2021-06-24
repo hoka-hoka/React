@@ -1,9 +1,41 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 
-interface TestComponent {
-  text: string;
+interface TestComponentProps {
+  page: string;
+  children: React.ReactNode;
 }
+interface TestComponentState {
+  stateEvent: string;
+}
+export default class TestComponent extends Component<
+  TestComponentProps,
+  TestComponentState
+> {
+  constructor(props: TestComponentProps) {
+    super(props);
+    this.state = { stateEvent: '' };
+  }
 
-const TestComponent = ({ text }: TestComponent) => <h1>{text}</h1>;
+  onMouseEnter = () => {
+    this.setState({ stateEvent: 'enter' });
+  };
 
-export default TestComponent;
+  onMouseLeave = () => {
+    this.setState({ stateEvent: 'leave' });
+  };
+
+  render() {
+    const { stateEvent } = this.state;
+    const { page, children } = this.props;
+    return (
+      <a
+        className={stateEvent}
+        href={page}
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
+      >
+        {children}
+      </a>
+    );
+  }
+}

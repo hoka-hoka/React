@@ -1,0 +1,13 @@
+.table {
+  flex-basis: 40%;
+  margin-right: 30px;
+  overflow-x: auto;
+  white-space: normal;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  &__coll {
+    padding: 5px 13px;
+    border: 1px solid #d8d8d8;
+  }
+}

@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import './CheckBox.scss';
 
-const CheckBox = ({ action, labText, extClass, idFor, bubling, callback }) => {
+const CheckBox = ({
+  idFor,
+  labelText,
+  labelClassName,
+  bubbling,
+  action,
+  callback,
+}) => {
   const [active, setActive] = useState(action);
 
   useEffect(() => {
-    if (bubling) {
+    if (bubbling) {
       callback(active);
     }
-  }, [bubling]);
+  }, [bubbling]);
 
   const changeActive = (event) => {
     if (event.type === 'keypress' && event.code !== 'Space') {
@@ -34,8 +41,9 @@ const CheckBox = ({ action, labText, extClass, idFor, bubling, callback }) => {
         checked={active}
         aria-hidden
       />
-      <label className={`check-box__lab${extClass || ''}`} htmlFor={idFor}>
-        {labText}
+
+      <label className={labelClassName} htmlFor={idFor}>
+        {labelText && <span>{labelText}</span>}
       </label>
     </div>
   );
@@ -43,8 +51,9 @@ const CheckBox = ({ action, labText, extClass, idFor, bubling, callback }) => {
 
 CheckBox.defaultProps = {
   action: false,
-  labText: 'label_text',
-  bubling: false,
+  labelText: 'label_text',
+  labelClassName: '',
+  bubbling: false,
   callback: (f) => f,
 };
 

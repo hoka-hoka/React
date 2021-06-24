@@ -1,0 +1,40 @@
+.ui {
+  padding: 10px;
+
+  &__example {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &__check-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    &:last-of-type {
+      margin-bottom: unset;
+    }
+  }
+
+  &__status {
+    margin-left: 10px;
+  }
+
+  &__drop {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  &__drop-item {
+    margin-right: 10px;
+
+    &:last-of-type {
+      margin: unset;
+    }
+  }
+
+  &__drop-label {
+    margin-right: 10px;
+  }
+}
