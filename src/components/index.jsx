@@ -6,6 +6,7 @@ import { viewMode } from '../constants';
 // import TestComponent from './TestComponent.tsx';
 import Sprite from '../common/Sprite';
 
+import UIButtons from './UIButtons/UIButtons';
 import UICheckBox from './UICheckBox/UICheckBox';
 import UIDropList from './UIDropList/UIDropList';
 import UIPagination from './UIPagination/UIPagination';
@@ -35,7 +36,7 @@ export default class App extends Component {
     return (
       <div className="ui">
         {/* <TestComponent text="hello" /> */}
-
+        <UIButtons />
         <UICheckBox />
         <UIDropList />
         <UIPagination />

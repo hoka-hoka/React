@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 
 import UITable from '../UITable/UITable';
 import CheckBox from '../../common/CheckBox/CheckBox';
@@ -35,7 +35,7 @@ const UICheckBox = () => {
         <div className="ui__check">
           {checkBoxes.map(
             ({ id, idFor, labelText, labelClassName, action }, index) => (
-              <div className="ui__check-item" key={id}>
+              <Fragment key={id}>
                 <CheckBox
                   idFor={idFor}
                   labelText={labelText}
@@ -45,7 +45,7 @@ const UICheckBox = () => {
                   callback={(isActive) => showText(isActive, index)}
                 />
                 <div className="ui__status">{`${active[index] ?? action}`}</div>
-              </div>
+              </Fragment>
             ),
           )}
           <div className="ui__check-button">

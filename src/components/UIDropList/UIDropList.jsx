@@ -17,18 +17,17 @@ const UIDropList = () => {
           {dropList.map(({ id, idFor, optionNames, placeHolder, action }) => (
             <Fragment key={id}>
               {idFor && (
-                <label className="ui__drop-label" htmlFor={idFor}>
+                <label className="ui__label" htmlFor={idFor}>
                   label text
                 </label>
               )}
-              <div className="ui__drop-item">
-                <DropList
-                  idFor={idFor}
-                  optionNames={optionNames}
-                  placeHolder={placeHolder}
-                  action={action}
-                />
-              </div>
+
+              <DropList
+                idFor={idFor}
+                optionNames={optionNames}
+                placeHolder={placeHolder}
+                action={action}
+              />
             </Fragment>
           ))}
         </div>

@@ -1,6 +1,29 @@
 .ui {
   padding: 10px;
 
+  &__buttons {
+    & .button {
+      margin-right: 10px;
+
+      &:last-of-type {
+        margin: unset;
+      }
+    }
+  }
+
+  &__check {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &__drop {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 10px;
+    align-items: center;
+  }
+
   &__menu {
     display: grid;
     grid-auto-flow: column;
@@ -17,36 +40,8 @@
     align-items: flex-start;
   }
 
-  &__check-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-
-    &:last-of-type {
-      margin-bottom: unset;
-    }
-  }
-
   &__status {
     margin-left: 10px;
-  }
-
-  &__drop {
-    display: flex;
-    margin-bottom: 10px;
-  }
-
-  &__drop-item {
-    margin-right: 10px;
-
-    &:last-of-type {
-      margin: unset;
-    }
-  }
-
-  &__drop-label {
-    margin-right: 10px;
   }
 }
 
