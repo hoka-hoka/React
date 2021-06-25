@@ -13,9 +13,15 @@ const buttons = [
 const about = [
   {
     id: 1,
-    name: 'idFor',
+    name: 'btnText',
     type: 'string',
-    text: 'Идентификатр метки',
+    text: 'Текст',
+  },
+  {
+    id: 2,
+    name: 'action',
+    type: 'boolean',
+    text: 'Активность',
   },
 ];
 
