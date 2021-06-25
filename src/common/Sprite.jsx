@@ -14,23 +14,23 @@ const sprite = `
     <symbol id="error" viewBox="0 0 32 32" width="15" height="18">
       <path d="M2.062 32h27.812a2 2 0 0 0 1.766-2.942l-13.876-26A1.997 1.997 0 0 0 16.002 2H16c-.738 0-1.414.406-1.762 1.056L.3 29.056a2.004 2.004 0 0 0 .046 1.972A2.005 2.005 0 0 0 2.062 32zM16 24a2 2 0 1 1-.001 4.001A2 2 0 0 1 16 24zm-2-3.968v-8a2 2 0 0 1 4 0v8a2 2 0 0 1-4 0z"></path>
     </symbol>
+
+    <symbol id="arrow" viewBox="0 0 17 18" width="16" height="16">
+      <path d="M8.36252 0.984375L16.3781 9L8.36252 17.0156L6.95627 15.6094L12.5344 9.98438H0.346894V8.01562H12.5344L6.95627 2.39062L8.36252 0.984375Z"></path>
+    </symbol>
 </svg>`;
 
-export default class Sprite extends Component
-{
-  constructor(props)
-  {
+export default class Sprite extends Component {
+  constructor(props) {
     super(props);
     this.state = {};
   }
 
-  componentDidMount()
-  {
+  componentDidMount() {
     body.insertAdjacentHTML('beforeend', sprite);
   }
 
-  render()
-  {
+  render() {
     return <></>;
   }
 }

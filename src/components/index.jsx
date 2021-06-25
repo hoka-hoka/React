@@ -5,9 +5,11 @@ import { viewMode } from '../constants';
 // import ModalWindow from '../common/ModalWindow';
 // import Pagination from '../common/Pagination';
 // import TestComponent from './TestComponent.tsx';
+import Sprite from '../common/Sprite';
 
 import UICheckBox from './UICheckBox/UICheckBox';
 import UIDropList from './UIDropList/UIDropList';
+import UIPagination from './UIPagination/UIPagination';
 
 import '../scss/normalize.scss';
 import './App.scss';
@@ -40,6 +42,7 @@ export default class App extends Component {
 
         <UICheckBox />
         <UIDropList />
+        <UIPagination />
 
         {/* <div className="ui__modal">
           <Buttons
@@ -52,9 +55,7 @@ export default class App extends Component {
           )}
         </div> */}
 
-        {/* <div className="ui__pagination">
-          <Pagination totalRecords="50" pageLimit="10" pageNeighbours="1" />
-        </div> */}
+        <Sprite />
       </div>
     );
   }

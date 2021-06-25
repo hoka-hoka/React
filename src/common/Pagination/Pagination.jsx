@@ -7,18 +7,32 @@ const RIGHT_PAGE = 'RIGHT';
 
 const Pagination = ({
   totalRecords = 1,
-  pageLimit = 30,
   pageNeighbours = 0,
-  targetPage = 1,
+  pageLimit = 30,
+  currentPage: current = 1,
   onPageChanged = (f) => f,
 }) => {
   const [totalPages, setTotalPages] = useState();
-  const [currentPage, setCurrentPage] = useState(targetPage);
+  const [currentPage, setCurrentPage] = useState(current);
 
   const calculateTotalPages = () => {
     const rezult = Math.ceil(totalRecords / pageLimit);
     return rezult;
   };
+
+  useEffect(() => {
+    setTotalPages(calculateTotalPages());
+  }, [totalRecords, pageLimit]);
+
+  useEffect(() => {
+    const paginationData = {
+      currentPage,
+      totalPages,
+      pageLimit,
+      totalRecords,
+    };
+    onPageChanged(paginationData);
+  }, [currentPage]);
 
   const range = (from, to, step = 1) => {
     let i = from;
@@ -90,20 +104,6 @@ const Pagination = ({
     event.preventDefault();
     gotoPage(page);
   };
-
-  useEffect(() => {
-    setTotalPages(calculateTotalPages());
-  }, [totalRecords]);
-
-  useEffect(() => {
-    const paginationData = {
-      currentPage,
-      totalPages,
-      pageLimit,
-      totalRecords,
-    };
-    onPageChanged(paginationData);
-  }, [currentPage]);
 
   return (
     <ul className="pagination" aria-label="Countries Pagination">

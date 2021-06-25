@@ -6,7 +6,7 @@
   font-size: inherit;
   font-family: inherit;
   background-color: transparent;
-  border: 1px solid $black-50;
+  border: 1px solid $black-25;
   border-radius: 4px;
   cursor: pointer;
 
@@ -22,7 +22,11 @@
     }
   }
 
-  &:focus,
+  &_active {
+    border-color: $blue;
+  }
+
+  &:focus-visible,
   &:hover {
     color: $black;
     border: 1px solid $blue;
