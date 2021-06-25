@@ -2,7 +2,6 @@ import React, { useState, Fragment, useEffect, useRef } from 'react';
 
 import UITable from '../UITable/UITable';
 import Pagination from '../../common/Pagination/Pagination';
-import Buttons from '../../common/Buttons/Buttons';
 
 import { pagination, about } from './constants';
 

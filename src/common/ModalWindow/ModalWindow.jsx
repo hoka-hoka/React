@@ -1,6 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
+
+import Buttons from '../Buttons/Buttons';
+
 import { viewMode } from '../../constants';
 import { lang, langData, interElems, focusArea } from './constants';
+
+import './variables.scss';
 import './ModalWindow.scss';
 
 const ModalWindow = ({ title, render, updateState }) => {
@@ -106,16 +111,11 @@ const ModalWindow = ({ title, render, updateState }) => {
             {render(setModalData, errors)}
 
             <div className="modal__btns">
-              <button className="modal__back" type="button" onClick={comeBack}>
-                {lang[langData.cancel]}
-              </button>
-              <button
-                className="modal__save"
-                type="button"
-                onClick={bubblingModalData}
-              >
-                {lang[langData.apply]}
-              </button>
+              <Buttons btnText={lang[langData.cancel]} callback={comeBack} />
+              <Buttons
+                btnText={lang[langData.apply]}
+                callback={bubblingModalData}
+              />
             </div>
           </div>
         </div>
@@ -133,24 +133,24 @@ ModalWindow.defaultProps = {
       <div className="modal__item">
         <label className="modal__lab" htmlFor="firstName">
           first name
-          <input
-            id="firstName"
-            className="modal__field"
-            type="text"
-            placeholder="first name"
-          />
         </label>
+        <input
+          id="firstName"
+          className="modal__field"
+          type="text"
+          placeholder="first name"
+        />
       </div>
       <div className="modal__item">
         <label className="modal__lab" htmlFor="lastName">
           last name
-          <input
-            id="lastName"
-            className="modal__field"
-            type="text"
-            placeholder="last mame"
-          />
         </label>
+        <input
+          id="lastName"
+          className="modal__field"
+          type="text"
+          placeholder="last mame"
+        />
       </div>
     </>
   ),

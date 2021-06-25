@@ -1,4 +1,12 @@
 .modal {
+  position: fixed;
+  top: 40px;
+  right: 0;
+  left: 0;
+  z-index: 4;
+  display: inline-block;
+  width: max-content;
+  margin: auto;
   font-family: $mainFont;
 
   &__overley {
@@ -13,16 +21,10 @@
   }
 
   &__cont {
-    position: absolute;
-    right: 0;
-    left: 0;
-    z-index: 4;
     display: inline-block;
     max-width: max-content;
     max-height: max-content;
-    margin: auto;
-    margin-top: 40px;
-    background-color: $white;
+    background-color: #fff;
 
     @media (max-width: 425px) {
       height: 100%;
@@ -50,6 +52,8 @@
 
   &__lab {
     position: relative;
+    display: block;
+    margin-bottom: 5px;
   }
 
   &__field {
@@ -69,27 +73,12 @@
     }
 
     &:focus {
-      border-color: $black-50;
+      border-color: $blue;
     }
   }
 
   &__btns {
     margin-top: 20px;
     text-align: right;
-  }
-
-  &__back,
-  &__save {
-    padding: 5px 10px;
-    font-size: inherit;
-    font-family: inherit;
-
-    &:focus {
-      outline: 1px solid $black-50;
-    }
-  }
-
-  &__back {
-    margin-right: 10px;
   }
 }
