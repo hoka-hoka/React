@@ -1,0 +1,39 @@
+@import './variables.scss';
+
+.button-bool {
+  $button-bool: &;
+
+  display: inline-block;
+
+  &__btn {
+    position: relative;
+    display: inline-block;
+    min-width: 50px;
+    min-height: 32px;
+    color: $black-50;
+    font-size: inherit;
+    font-family: inherit;
+    background-color: transparent;
+    border: 1px solid $black-25;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &_active {
+      color: white;
+      background-color: $blue;
+      outline: none;
+    }
+
+    &_active:focus-visible,
+    &:focus-visible:hover {
+      border: 1px solid $blue;
+    }
+
+    &:focus-visible:not(&_active),
+    &:hover:not(&_active) {
+      color: $black;
+      border: 1px solid $blue;
+      outline: none;
+    }
+  }
+}

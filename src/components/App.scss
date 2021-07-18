@@ -11,6 +11,12 @@
     }
   }
 
+  &__button-bool {
+    .button-bool:first-of-type {
+      margin-right: 10px;
+    }
+  }
+
   &__check {
     display: grid;
     grid-gap: 10px;

@@ -7,6 +7,7 @@ import { viewMode } from '../constants';
 import Sprite from '../common/Sprite';
 
 import UIButtons from './UIButtons/UIButtons';
+import UISelectBooleanButton from './UISelectBooleanButton/UISelectBooleanButton';
 import UICheckBox from './UICheckBox/UICheckBox';
 import UIDropList from './UIDropList/UIDropList';
 import UIPagination from './UIPagination/UIPagination';
@@ -37,6 +38,7 @@ export default class App extends Component {
       <div className="ui">
         {/* <TestComponent text="hello" /> */}
         <UIButtons />
+        <UISelectBooleanButton />
         <UICheckBox />
         <UIDropList />
         <UIPagination />

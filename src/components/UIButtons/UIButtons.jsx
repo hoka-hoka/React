@@ -13,8 +13,8 @@ const UIButtons = () => {
       <div className="ui__example">
         <UITable about={about} />
         <div className="ui__buttons">
-          {buttons.map(({ btnText, action }) => (
-            <Buttons btnText={btnText} action={action} />
+          {buttons.map(({ id, btnText, action }) => (
+            <Buttons key={id} btnText={btnText} action={action} />
           ))}
         </div>
       </div>
