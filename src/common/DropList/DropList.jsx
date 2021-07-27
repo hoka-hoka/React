@@ -51,14 +51,39 @@ const DropList = ({ idFor, optionNames, placeHolder, action, callback }) => {
     rasingFocus(target);
   };
 
+  const bubblingSelectOption = () => {
+    const newIndex = curOption.index ? curOption.index - 1 : curOption.index;
+    setCurOption({ val: optionNames[curOption.index], index: newIndex });
+  };
+
+  const diveSelectOption = () => {
+    const newIndex =
+      curOption.index !== optionNames.length - 1
+        ? curOption.index + 1
+        : optionNames.length - 1;
+
+    setCurOption({ val: optionNames[curOption.index], index: newIndex });
+  };
+
   const selectOption = (event, i) => {
     event.stopPropagation();
     const { type } = event;
     if (type === 'keydown') {
       const keyCode = event.keyCode || event.charCode;
-      if (![32, 13].includes(keyCode)) return;
+
+      if (keyCode === 38) {
+        bubblingSelectOption();
+        return;
+      }
+
+      if (keyCode === 40) {
+        diveSelectOption();
+        return;
+      }
+      if ([32, 13, 27].includes(keyCode)) {
+        setActive(false);
+      }
     }
-    setActive(false);
   };
 
   const changeActiveOption = ({ target }, i) => {
@@ -112,7 +137,7 @@ const DropList = ({ idFor, optionNames, placeHolder, action, callback }) => {
                 i == curOption.index ? ' drop-list__item_focused' : ''
               }`}
               onClick={(event) => selectOption(event, i)}
-              onKeyPress={(event) => selectOption(event, i)}
+              onKeyDown={(event) => selectOption(event, i)}
               onFocus={(event) => changeActiveOption(event, i)}
               key={i}
               tabIndex="0"
