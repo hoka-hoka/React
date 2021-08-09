@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Fragment } from 'react';
+
+import Search from '../Search/Search';
 
 import './DropList.scss';
 
@@ -27,13 +30,38 @@ const DropList = ({ idFor, optionNames, placeHolder, action, callback }) => {
     });
   };
 
-  const handlerKeyPress = (event) => {
+  const bubblingTargetOption = () => {
+    if (!curOption.index) {
+      return;
+    }
+    setCurOption({
+      val: optionNames[curOption.index - 1],
+      index: curOption.index - 1,
+    });
+  };
+
+  const diveTargetOption = () => {
+    if (curOption.index === optionNames.length - 1) {
+      return;
+    }
+    const newIndex = (curOption.index ?? -1) + 1;
+    setCurOption({
+      val: optionNames[newIndex],
+      index: newIndex,
+    });
+  };
+
+  const handlerKeyDown = (event) => {
     event.stopPropagation();
     const keyCode = event.keyCode || event.charCode;
+    if (keyCode === 38) {
+      bubblingTargetOption();
+    }
+    if (keyCode === 40) {
+      diveTargetOption();
+    }
     if (![32, 13].includes(keyCode)) return;
-    setActive((prevState) => ({
-      active: !prevState,
-    }));
+    setActive((prevState) => !prevState);
   };
 
   const rasingFocus = (elem) => {
@@ -51,33 +79,19 @@ const DropList = ({ idFor, optionNames, placeHolder, action, callback }) => {
     rasingFocus(target);
   };
 
-  const bubblingSelectOption = () => {
-    const newIndex = curOption.index ? curOption.index - 1 : curOption.index;
-    setCurOption({ val: optionNames[curOption.index], index: newIndex });
-  };
-
-  const diveSelectOption = () => {
-    const newIndex =
-      curOption.index !== optionNames.length - 1
-        ? curOption.index + 1
-        : optionNames.length - 1;
-
-    setCurOption({ val: optionNames[curOption.index], index: newIndex });
-  };
-
-  const selectOption = (event, i) => {
+  const selectOption = (event) => {
     event.stopPropagation();
     const { type } = event;
     if (type === 'keydown') {
       const keyCode = event.keyCode || event.charCode;
 
       if (keyCode === 38) {
-        bubblingSelectOption();
+        bubblingTargetOption();
         return;
       }
 
       if (keyCode === 40) {
-        diveSelectOption();
+        diveTargetOption();
         return;
       }
       if ([32, 13, 27].includes(keyCode)) {
@@ -105,7 +119,7 @@ const DropList = ({ idFor, optionNames, placeHolder, action, callback }) => {
       className={`drop-list${active ? ' drop-list_active' : ''}`}
       tabIndex="0"
       onBlur={handlerBlur}
-      onKeyPress={handlerKeyPress}
+      onKeyDown={handlerKeyDown}
       role="button"
       aria-expanded={active}
       aria-haspopup="true"
@@ -130,22 +144,27 @@ const DropList = ({ idFor, optionNames, placeHolder, action, callback }) => {
       />
       {active && (
         <div className="drop-list__panel">
-          {optionNames.map((item, i) => (
-            <div
-              ref={(el) => defaultFocusOption(el, i)}
-              className={`drop-list__item${
-                i == curOption.index ? ' drop-list__item_focused' : ''
-              }`}
-              onClick={(event) => selectOption(event, i)}
-              onKeyDown={(event) => selectOption(event, i)}
-              onFocus={(event) => changeActiveOption(event, i)}
-              key={i}
-              tabIndex="0"
-              role="button"
-            >
-              {item}
-            </div>
-          ))}
+          <div className="drop-list__searh">
+            <Search />
+          </div>
+          <div className="drop-list__options">
+            {optionNames.map((item, i) => (
+              <div
+                ref={(el) => defaultFocusOption(el, i)}
+                className={`drop-list__item${
+                  i == curOption.index ? ' drop-list__item_focused' : ''
+                }`}
+                onClick={(event) => selectOption(event, i)}
+                onKeyDown={(event) => selectOption(event, i)}
+                onFocus={(event) => changeActiveOption(event, i)}
+                key={i}
+                tabIndex="0"
+                role="button"
+              >
+                {item}
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>

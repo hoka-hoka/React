@@ -37,12 +37,12 @@ export default class App extends Component {
     return (
       <div className="ui">
         {/* <TestComponent text="hello" /> */}
-        <UIButtons />
+        {/* <UIButtons />
         <UISelectBooleanButton />
-        <UICheckBox />
+        <UICheckBox /> */}
         <UIDropList />
-        <UIPagination />
-        <UIModalWindow view={view} updateState={this.updateState} />
+        {/* <UIPagination />
+        <UIModalWindow view={view} updateState={this.updateState} /> */}
         <Sprite />
       </div>
     );

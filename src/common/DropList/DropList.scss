@@ -76,6 +76,11 @@
     border-radius: 0 0 4px 4px;
   }
 
+  &__options {
+    height: 100px;
+    overflow-y: auto;
+  }
+
   &__item {
     padding: 4px 0 4px 14px;
     color: $black-75;

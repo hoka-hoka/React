@@ -1,21 +1,37 @@
 const dropList = [
   {
     id: 1,
-    optionNames: ['option-1', 'option-2', 'option-3', 'option-4', 'option-5'],
+    optionNames: [
+      'option-1',
+      'option-2',
+      'option-3',
+      'option-4',
+      'option-5',
+      'option-1',
+      'option-2',
+      'option-3',
+      'option-4',
+      'option-5',
+      'option-1',
+      'option-2',
+      'option-3',
+      'option-4',
+      'option-5',
+    ],
     placeHolder: 'select',
   },
-  {
-    id: 2,
-    idFor: 'drop',
-    optionNames: ['option-1', 'option-2', 'option-3', 'option-4', 'option-5'],
-    placeHolder: 'select',
-  },
-  {
-    id: 3,
-    optionNames: ['option-1', 'option-2', 'option-3', 'option-4', 'option-5'],
-    placeHolder: 'select',
-    action: true,
-  },
+  // {
+  //   id: 2,
+  //   idFor: 'drop',
+  //   optionNames: ['option-1', 'option-2', 'option-3', 'option-4', 'option-5'],
+  //   placeHolder: 'select',
+  // },
+  // {
+  //   id: 3,
+  //   optionNames: ['option-1', 'option-2', 'option-3', 'option-4', 'option-5'],
+  //   placeHolder: 'select',
+  //   action: true,
+  // },
 ];
 
 const about = [
