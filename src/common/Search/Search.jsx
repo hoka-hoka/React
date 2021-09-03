@@ -1,17 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './Search.scss';
 
-const Search = ({}) => {
-  const [state, setState] = useState();
+const Search = ({ callback, focused }) => {
+  const [focus, setFocus] = useState(focused);
+
+  useEffect(() => {}, []);
+
+  const changeFieldHandler = ({ target }) => {
+    callback(target.value);
+  };
+
   return (
     <div className="search">
-      <input className="search__field" type="text" />
-      <svg width="16" height="16">
+      <input
+        ref={}
+        className="search__field"
+        type="text"
+        onChange={changeFieldHandler}
+      />
+      <svg className="search__icon" width="12" height="12">
         <use xlinkHref="#search" />
       </svg>
     </div>
   );
+};
+
+Search.defaultProps = {
+  callback: () => {},
+  focused: true,
 };
 
 export default Search;

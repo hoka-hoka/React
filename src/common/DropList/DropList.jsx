@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Fragment } from 'react';
 
 import Search from '../Search/Search';
+import keyCodeNames from './constants';
 
 import './DropList.scss';
 
 const DropList = ({ idFor, optionNames, placeHolder, action, callback }) => {
   const [active, setActive] = useState(action);
+  const [options, setOptions] = useState(optionNames);
   const [curOption, setCurOption] = useState({
     val: '',
     index: null,
@@ -15,7 +16,7 @@ const DropList = ({ idFor, optionNames, placeHolder, action, callback }) => {
 
   useEffect(() => {
     if (!active) {
-      par.current.focus();
+      // par.current.focus();
     }
     callback(active);
   }, [active]);
@@ -35,18 +36,18 @@ const DropList = ({ idFor, optionNames, placeHolder, action, callback }) => {
       return;
     }
     setCurOption({
-      val: optionNames[curOption.index - 1],
+      val: options[curOption.index - 1],
       index: curOption.index - 1,
     });
   };
 
   const diveTargetOption = () => {
-    if (curOption.index === optionNames.length - 1) {
+    if (curOption.index === options.length - 1) {
       return;
     }
     const newIndex = (curOption.index ?? -1) + 1;
     setCurOption({
-      val: optionNames[newIndex],
+      val: options[newIndex],
       index: newIndex,
     });
   };
@@ -54,29 +55,28 @@ const DropList = ({ idFor, optionNames, placeHolder, action, callback }) => {
   const handlerKeyDown = (event) => {
     event.stopPropagation();
     const keyCode = event.keyCode || event.charCode;
-    if (keyCode === 38) {
-      bubblingTargetOption();
+
+    switch (keyCode) {
+      case keyCodeNames.ArrowUP:
+        bubblingTargetOption();
+        break;
+      case keyCodeNames.ArrowDown:
+        diveTargetOption();
+        break;
+      case keyCodeNames.Space:
+      case keyCode.Enter:
+        setActive((prevState) => !prevState);
+        break;
+      default:
+        break;
     }
-    if (keyCode === 40) {
-      diveTargetOption();
-    }
-    if (![32, 13].includes(keyCode)) return;
-    setActive((prevState) => !prevState);
   };
 
-  const rasingFocus = (elem) => {
-    const $focused = $(elem).parent();
-    setTimeout(() => {
-      $focused.focus();
-    });
-  };
-
-  const handlerClick = ({ target }) => {
-    if (!optionNames.length) {
+  const handlerClick = () => {
+    if (!options.length) {
       return;
     }
     setActive((prevState) => !prevState);
-    rasingFocus(target);
   };
 
   const selectOption = (event) => {
@@ -100,17 +100,12 @@ const DropList = ({ idFor, optionNames, placeHolder, action, callback }) => {
     }
   };
 
-  const changeActiveOption = ({ target }, i) => {
-    setCurOption({ val: target.innerHTML, index: i });
-  };
-
-  const defaultFocusOption = (el, i) => {
-    if (!el || curOption.index != i) {
-      return;
-    }
-    setTimeout(() => {
-      el.focus();
-    });
+  const optionsFilter = (value) => {
+    const regexp = new RegExp(value, 'ig');
+    const filteredOptions = optionNames.filter(
+      (option) => ~option.search(regexp),
+    );
+    setOptions(filteredOptions);
   };
 
   return (
@@ -144,21 +139,19 @@ const DropList = ({ idFor, optionNames, placeHolder, action, callback }) => {
       />
       {active && (
         <div className="drop-list__panel">
-          <div className="drop-list__searh">
-            <Search />
+          <div className="drop-list__search">
+            <Search callback={optionsFilter} />
           </div>
           <div className="drop-list__options">
-            {optionNames.map((item, i) => (
+            {options.map((item, i) => (
               <div
-                ref={(el) => defaultFocusOption(el, i)}
                 className={`drop-list__item${
                   i == curOption.index ? ' drop-list__item_focused' : ''
                 }`}
                 onClick={(event) => selectOption(event, i)}
                 onKeyDown={(event) => selectOption(event, i)}
-                onFocus={(event) => changeActiveOption(event, i)}
                 key={i}
-                tabIndex="0"
+                tabIndex="-1"
                 role="button"
               >
                 {item}
