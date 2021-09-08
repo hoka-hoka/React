@@ -9,7 +9,7 @@ import Sprite from '../common/Sprite';
 import UIButtons from './UIButtons/UIButtons';
 import UISelectBooleanButton from './UISelectBooleanButton/UISelectBooleanButton';
 import UICheckBox from './UICheckBox/UICheckBox';
-import UIDropList from './UIDropList/UIDropList';
+import UIDropdownList from './UIDropdownList/UIDropdownList';
 import UIPagination from './UIPagination/UIPagination';
 import UIModalWindow from './UIModalWindow/UIModalWindow';
 
@@ -37,10 +37,10 @@ export default class App extends Component {
     return (
       <div className="ui">
         {/* <TestComponent text="hello" /> */}
-        {/* <UIButtons />
-        <UISelectBooleanButton />
-        <UICheckBox /> */}
-        <UIDropList />
+        {/* <UIButtons /> */}
+        {/* <UISelectBooleanButton /> */}
+        {/* <UICheckBox /> */}
+        <UIDropdownList />
         {/* <UIPagination />
         <UIModalWindow view={view} updateState={this.updateState} /> */}
         <Sprite />

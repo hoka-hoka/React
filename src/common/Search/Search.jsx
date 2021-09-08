@@ -1,23 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import './Search.scss';
 
-const Search = ({ callback, focused }) => {
-  const [focus, setFocus] = useState(focused);
+const Search = ({ searchText, active, callback }) => {
+  const inputField = useRef();
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (active) {
+      inputField.current.focus();
+    }
+  }, []);
 
-  const changeFieldHandler = ({ target }) => {
+  const onChangeField = ({ target }) => {
     callback(target.value);
   };
 
   return (
     <div className="search">
       <input
-        ref={}
+        ref={inputField}
         className="search__field"
         type="text"
-        onChange={changeFieldHandler}
+        defaultValue={searchText}
+        onChange={onChangeField}
       />
       <svg className="search__icon" width="12" height="12">
         <use xlinkHref="#search" />
@@ -27,8 +32,8 @@ const Search = ({ callback, focused }) => {
 };
 
 Search.defaultProps = {
-  callback: () => {},
   focused: true,
+  callback: () => {},
 };
 
 export default Search;

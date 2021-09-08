@@ -1,22 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 import Search from '../Search/Search';
-import keyCodeNames from './constants';
+import { keyCodeNames, langData } from './constants';
 
-import './DropList.scss';
+import './DropdownList.scss';
 
-const DropList = ({ idFor, optionNames, placeHolder, action, callback }) => {
+const DropdownList = ({
+  idFor,
+  optionNames,
+  placeHolder,
+  action,
+  callback,
+}) => {
   const [active, setActive] = useState(action);
   const [options, setOptions] = useState(optionNames);
   const [curOption, setCurOption] = useState({
     val: '',
     index: null,
   });
-  const par = useRef();
+  const parentNode = useRef();
+  const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
     if (!active) {
-      // par.current.focus();
+      parentNode.current.focus();
     }
     callback(active);
   }, [active]);
@@ -24,14 +31,14 @@ const DropList = ({ idFor, optionNames, placeHolder, action, callback }) => {
   const handlerBlur = () => {
     setTimeout(() => {
       const $elem = $(document.activeElement);
-      const $focused = $(par.current);
+      const $focused = $(parentNode.current);
       if (!$focused.is($elem) && !$focused.find($elem).length) {
         setActive(false);
       }
     });
   };
 
-  const bubblingTargetOption = () => {
+  const bubblingCurOption = () => {
     if (!curOption.index) {
       return;
     }
@@ -41,30 +48,34 @@ const DropList = ({ idFor, optionNames, placeHolder, action, callback }) => {
     });
   };
 
-  const diveTargetOption = () => {
+  const diveCurOption = () => {
     if (curOption.index === options.length - 1) {
       return;
     }
-    const newIndex = (curOption.index ?? -1) + 1;
+    const index = (curOption.index ?? -1) + 1;
     setCurOption({
-      val: options[newIndex],
-      index: newIndex,
+      index,
+      val: optionNames[index],
     });
   };
 
-  const handlerKeyDown = (event) => {
+  const onKeyDown = (event) => {
     event.stopPropagation();
     const keyCode = event.keyCode || event.charCode;
-
     switch (keyCode) {
       case keyCodeNames.ArrowUP:
-        bubblingTargetOption();
+        bubblingCurOption();
         break;
       case keyCodeNames.ArrowDown:
-        diveTargetOption();
+        diveCurOption();
         break;
       case keyCodeNames.Space:
-      case keyCode.Enter:
+        setActive(true);
+        break;
+      case keyCodeNames.Escape:
+        setActive(false);
+        break;
+      case keyCodeNames.Enter:
         setActive((prevState) => !prevState);
         break;
       default:
@@ -72,32 +83,16 @@ const DropList = ({ idFor, optionNames, placeHolder, action, callback }) => {
     }
   };
 
-  const handlerClick = () => {
-    if (!options.length) {
-      return;
-    }
+  const onClick = () => {
     setActive((prevState) => !prevState);
   };
 
-  const selectOption = (event) => {
+  const selectOption = (event, index) => {
     event.stopPropagation();
-    const { type } = event;
-    if (type === 'keydown') {
-      const keyCode = event.keyCode || event.charCode;
-
-      if (keyCode === 38) {
-        bubblingTargetOption();
-        return;
-      }
-
-      if (keyCode === 40) {
-        diveTargetOption();
-        return;
-      }
-      if ([32, 13, 27].includes(keyCode)) {
-        setActive(false);
-      }
-    }
+    setCurOption({
+      index,
+      val: optionNames[index],
+    });
   };
 
   const optionsFilter = (value) => {
@@ -105,16 +100,17 @@ const DropList = ({ idFor, optionNames, placeHolder, action, callback }) => {
     const filteredOptions = optionNames.filter(
       (option) => ~option.search(regexp),
     );
+    setSearchText(value);
     setOptions(filteredOptions);
   };
 
   return (
     <div
-      ref={par}
+      ref={parentNode}
       className={`drop-list${active ? ' drop-list_active' : ''}`}
       tabIndex="0"
       onBlur={handlerBlur}
-      onKeyDown={handlerKeyDown}
+      onKeyDown={onKeyDown}
       role="button"
       aria-expanded={active}
       aria-haspopup="true"
@@ -123,7 +119,7 @@ const DropList = ({ idFor, optionNames, placeHolder, action, callback }) => {
         id={idFor}
         className="drop-list__field"
         type="text"
-        onClick={handlerClick}
+        onClick={onClick}
         placeholder={placeHolder}
         tabIndex="-1"
         value={curOption.val}
@@ -133,30 +129,37 @@ const DropList = ({ idFor, optionNames, placeHolder, action, callback }) => {
       <button
         className="drop-list__btn"
         type="button"
-        onClick={handlerClick}
+        onClick={onClick}
         tabIndex="-1"
         aria-hidden
       />
       {active && (
         <div className="drop-list__panel">
           <div className="drop-list__search">
-            <Search callback={optionsFilter} />
+            <Search
+              searchText={searchText}
+              active={active}
+              callback={optionsFilter}
+            />
           </div>
           <div className="drop-list__options">
-            {options.map((item, i) => (
+            {options.map((item, index) => (
               <div
                 className={`drop-list__item${
-                  i == curOption.index ? ' drop-list__item_focused' : ''
+                  index == curOption.index ? ' drop-list__item_focused' : ''
                 }`}
-                onClick={(event) => selectOption(event, i)}
-                onKeyDown={(event) => selectOption(event, i)}
-                key={i}
+                onClick={(event) => selectOption(event, index)}
+                onKeyDown={onKeyDown}
+                key={index}
                 tabIndex="-1"
                 role="button"
               >
                 {item}
               </div>
             ))}
+            {!options.length && (
+              <div className="drop-list__text">{langData.notFound}</div>
+            )}
           </div>
         </div>
       )}
@@ -164,7 +167,7 @@ const DropList = ({ idFor, optionNames, placeHolder, action, callback }) => {
   );
 };
 
-DropList.defaultProps = {
+DropdownList.defaultProps = {
   callback: (f) => f,
   idFor: '',
   optionNames: [],
@@ -172,4 +175,4 @@ DropList.defaultProps = {
   action: false,
 };
 
-export default DropList;
+export default DropdownList;

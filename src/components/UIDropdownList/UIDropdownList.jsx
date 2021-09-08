@@ -1,15 +1,15 @@
 import React, { useState, Fragment } from 'react';
 
 import UITable from '../UITable/UITable';
-import DropList from '../../common/DropList/DropList';
+import DropdownList from '../../common/DropdownList/DropdownList';
 
 import { dropList, about } from './constants';
 
-const UIDropList = () => {
+const UIDropdownList = () => {
   const [state, setState] = useState();
   return (
     <div className="ui__cont">
-      <h2 className="ui__title">DropList</h2>
+      <h2 className="ui__title">DropdownList</h2>
       <div className="ui__example">
         <UITable about={about} />
 
@@ -21,8 +21,7 @@ const UIDropList = () => {
                   label text
                 </label>
               )}
-
-              <DropList
+              <DropdownList
                 idFor={idFor}
                 optionNames={optionNames}
                 placeHolder={placeHolder}
@@ -36,4 +35,4 @@ const UIDropList = () => {
   );
 };
 
-export default UIDropList;
+export default UIDropdownList;

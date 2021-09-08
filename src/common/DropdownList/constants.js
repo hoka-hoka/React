@@ -6,4 +6,8 @@ const keyCodeNames = {
   Enter: 13,
 };
 
-export default keyCodeNames;
+const langData = {
+  notFound: 'No results found',
+};
+
+export { keyCodeNames, langData };
