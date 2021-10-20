@@ -96,7 +96,7 @@ const DropdownList = ({
   };
 
   const optionsFilter = (value) => {
-    const regexp = new RegExp(value, 'ig');
+    const regexp = new RegExp(value.trim() || '\\d+', 'ig');
     const filteredOptions = optionNames.filter(
       (option) => ~option.search(regexp),
     );

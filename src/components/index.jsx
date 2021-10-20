@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { viewMode } from '../constants';
 
-// import Buttons from '../common/Buttons';
-
-// import TestComponent from './TestComponent.tsx';
 import Sprite from '../common/Sprite';
 
 import UIButtons from './UIButtons/UIButtons';
@@ -36,13 +33,12 @@ export default class App extends Component {
     }
     return (
       <div className="ui">
-        {/* <TestComponent text="hello" /> */}
-        {/* <UIButtons /> */}
-        {/* <UISelectBooleanButton /> */}
-        {/* <UICheckBox /> */}
+        <UIButtons />
+        <UISelectBooleanButton />
+        <UICheckBox />
         <UIDropdownList />
-        {/* <UIPagination />
-        <UIModalWindow view={view} updateState={this.updateState} /> */}
+        <UIPagination />
+        <UIModalWindow view={view} updateState={this.updateState} />
         <Sprite />
       </div>
     );
